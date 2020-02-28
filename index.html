@@ -78,12 +78,6 @@ container {
           <li class="nav-item">
             <a class="nav-link" href="https://github.com/SaundersCox">GitHub</a>
           </li>
-          <!-- <li class="nav-item"> -->
-            <!-- <a class="nav-link" href="#">Services</a> -->
-          <!-- </li> -->
-          <!-- <li class="nav-item"> -->
-            <!-- <a class="nav-link" href="#">Contact</a> -->
-          <!-- </li> -->
         </ul>
       </div>
     </div>
@@ -93,51 +87,88 @@ container {
   <section>
     <div class="container">
       <div class="row">
-	    <div class="col-sm-4">
-		  
-		  <img src="me0.jpg" id="imgClickAndChange" onclick="changeImage()">
-		  </img>
-		  <script src="changeImage.js"></script>
-		  </button>
-		  <div align="left">
-		  <h2>Leetcode Problem Generator</h2>
-		    <p>
-			<b>Choose a category:</b>
-		    <br><input type="radio" name="leetcode" value="Random">Random 
-			<br><input type="radio" name="leetcode" value="Non-Premium">Non-Premium 
-			<br><input type="radio" name="leetcode" value="Array">Array 
-			<br><input type="radio" name="leetcode" value="Binary">Binary 
-			<br><input type="radio" name="leetcode" value="Dynamic Programming">Dynamic Programming 
-			<br><input type="radio" name="leetcode" value="Graph Programming">Graph
-			<br><input type="radio" name="leetcode" value="Interval">Interval
-			<br><input type="radio" name="leetcode" value="Linked List">Linked List
-			<br><input type="radio" name="leetcode" value="Matrix">Matrix
-			<br><input type="radio" name="leetcode" value="String">String
-			<br><input type="radio" name="leetcode" value="Tree">Tree
-			<br><input type="radio" name="leetcode" value="Heap">Heap
+
+        <!-- Left sidebar content -->
+        <div class="col-sm-4">
+        
+          <img src="me0.jpg" id="imgClickAndChange" onclick="changeImage()">
+          </img>
+          <script src="changeImage.js"></script>
+          </button>
+          
+          <!-- Leetcode section-->
+          <div id="leetcode-section" align="left">
+            <h2>Leetcode Problem Generator</h2>
+            <p>
+              <b>Choose a category:</b>
+                <br><input type="radio" name="leetcode" value="Random">Random 
+              <br><input type="radio" name="leetcode" value="Non-Premium">Non-Premium 
+              <br><input type="radio" name="leetcode" value="Array">Array 
+              <br><input type="radio" name="leetcode" value="Binary">Binary 
+              <br><input type="radio" name="leetcode" value="Dynamic Programming">Dynamic Programming 
+              <br><input type="radio" name="leetcode" value="Graph Programming">Graph
+              <br><input type="radio" name="leetcode" value="Interval">Interval
+              <br><input type="radio" name="leetcode" value="Linked List">Linked List
+              <br><input type="radio" name="leetcode" value="Matrix">Matrix
+              <br><input type="radio" name="leetcode" value="String">String
+              <br><input type="radio" name="leetcode" value="Tree">Tree
+              <br><input type="radio" name="leetcode" value="Heap">Heap
+              
+              <br>
+              <script src="urls.js"></script>
+              <button onclick="loadLeetCode()">Let's Leetcode!</button>
+            </p>
+          </div>
       
-			<br>
-		    <script src="urls.js"></script>
-			<button onclick="loadLeetCode()">Let's Leetcode!</button>
-			
-			</p>
-		  </div>
-		</div>
-        <div class="col-sm-8">
-          <h1 class="mt-5">Daniel "Saunders" Cox Jr.</h1>
-		  <h2>About</h2>
-		  <p>Hey! I'm Saunders, a transfer student with senior standing studying Computer Science at Virginia Tech. I live north of campus-It's a perfect location with nice views on walks, just a minute from the highway, a few minutes from Blacksburg Skatepark, and a five minute bus commute to campus.
-		  <br><br>
-		  I first came to Tech as a transfer student with absolutely no connections. I quickly made other newcomer friends and brought them together.
-		  <br><br>
-		  I've always loved integrating my life with technology. Whether it be video games, music production, long distance connections, planning trips, or maintaining a diet, I've always had computers to assist me. From my elementary school years, I was first introduced to HTML and CSS through my generation's social media: forums, and personalized webpages. In my Neopets shop, I'd embed a MIDI file of some catchy TV intro into my virtual store. On my GaiaOnline profile, I'd modify the CSS to get my first taste of web design.
-		  <br><br>
-		  Fast forward to today, I've created various personal Java projects. Most of these scenarios prompted from college courses have given me some insight on the applications I have the potential to build. As a result, I can envision how I can contribute in a team environment. I love expressing my creative side when applicable, and I prefer to approach solutions with an open mind.
-		  <br><br>
-		  Additionally, I've become familiar with some of the quirkiness of C and the streamlined nature of Python. My Fall 2019 courses consist of CS 3114: Data Structures and Algorithms--mostly partnered projects in Java, CS 2506: Intro to Computer Organization (Part 2)--C labs and circuitry studies, CS 3654: Data Analytics and Visualization--Pandas in Python and manipulating datasets.
+          <!-- Music game section -->
+          <div id="music-game-section">
+            <div id="intervals">
+              <h2>The Music Interval Guessing Game!</h2>
+              <script src="music.js"></script>
+              <p>
+                <label h2 for="q" id="question"></label>
+                <label for="q" id="answer"></label>
+
+                <label for="q" id="check"></label>
+                <br>
+
+                <button type="button" onclick="intervalQuestion()">Play!</button>
+                <button type="button" onclick="intervalCheck()">Check</button>
+              </p>
+            </div>
+          
+          
+          <!-- Review scales section -->
+          <div id="scales-section">
+            <h2>Review your scales!</h2>
+            <p>
+              <label for="r" id="scales"></label>
+              <br>
+              <input type="text" id="in" placeholder="Enter key here!" name="q">
+              <button type="button" for="r" onclick="scales()">Show scales!</button>
+              <br>
+            </p>
+          </div>
         </div>
-		<br><br>.
       </div>
+
+      <!-- About content -->
+      <div class="col-sm-8">
+        <h1 class="mt-5">Daniel "Saunders" Cox Jr.</h1>
+		    <h2>About</h2>
+        <p>
+          Hey! I'm Saunders, a transfer student with senior standing studying Computer Science at Virginia Tech. I live north of campus-It's a perfect location with nice views on walks, just a minute from the highway, a few minutes from Blacksburg Skatepark, and a five minute bus commute to campus.
+          <br><br>
+          I first came to Tech as a transfer student with absolutely no connections. I quickly made other newcomer friends and brought them together.
+          <br><br>
+          I've always loved integrating my life with technology. Whether it be video games, music production, long distance connections, planning trips, or maintaining a diet, I've always had computers to assist me. From my elementary school years, I was first introduced to HTML and CSS through my generation's social media: forums, and personalized webpages. In my Neopets shop, I'd embed a MIDI file of some catchy TV intro into my virtual store. On my GaiaOnline profile, I'd modify the CSS to get my first taste of web design.
+          <br><br>
+          Fast forward to today, I've created various personal Java projects. Most of these scenarios prompted from college courses have given me some insight on the applications I have the potential to build. As a result, I can envision how I can contribute in a team environment. I love expressing my creative side when applicable, and I prefer to approach solutions with an open mind.
+          <br><br>
+          Additionally, I've become familiar with some of the quirkiness of C and the streamlined nature of Python. My Fall 2019 courses consist of CS 3114: Data Structures and Algorithms--mostly partnered projects in Java, CS 2506: Intro to Computer Organization (Part 2)--C labs and circuitry studies, CS 3654: Data Analytics and Visualization--Pandas in Python and manipulating datasets.
+        </p>
+      </div>
+      <br><br>.
     </div>
   </section>
 

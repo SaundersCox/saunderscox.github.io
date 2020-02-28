@@ -125,8 +125,14 @@ function intervalQuestion() {
  * Check if the user input a correct answwer
  */
 function intervalCheck() {
-    document.getElementById("check").innerHTML = getMajorScale(currMajor)[(this.randInterval-1)%7];
-    // document.getElementById("check").innerHTML = this.randInterval%8;
+    if (this.isMajor) {
+        document.getElementById("check").innerHTML = getMajorScale(currMajor)[(this.randInterval-1)%7];
+    }
+    else {
+        document.getElementById("check").innerHTML = getMinorScale(currMinor)[(this.randInterval-1)%7];
+    }
+    
+    // document.getElementById("check").innerHTML = (this.randInterval-1)%7;
 }
 
 /**
