@@ -2,7 +2,7 @@ function changeImage() {
 	var str = document.getElementById("imgClickAndChange").src;
 	var res = str.substring(str.length - 5, str.length - 4);
 	
-	if (res == 5) {
+	if (res == 4) {
 		document.getElementById("imgClickAndChange").src = "me0.jpg";
 	}
 	else {
