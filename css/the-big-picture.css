@@ -42,3 +42,8 @@ container {
 	padding: 50px;
 	padding-bottom: 200px;
 }
+
+face {
+  max-width: 50%;
+  max-height: 50%;
+}

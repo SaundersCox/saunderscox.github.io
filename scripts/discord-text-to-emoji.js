@@ -15,7 +15,7 @@ function convertChars(str, nums) {
 
     [...str].forEach(c => {
         if (c.match(/[a-zA-Z]/g)) {
-            result += " :regional_indicator_" + c + ":";
+            result += " :regional_indicator_" + c.toLowerCase() + ":";
         }
         else if (c.match(/[0-9]/g)) {
             i = parseInt(c);
