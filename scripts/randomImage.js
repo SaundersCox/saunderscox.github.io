@@ -1,4 +1,4 @@
-const NUM_IMAGES = 4
+const NUM_IMAGES = 2
 
 randomImage()
 
