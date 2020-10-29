@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+  <title>DrillTime</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<style>
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Montserrat", sans-serif
+  }
+
+  .w3-row-padding img {
+    margin-bottom: 12px
+  }
+
+  /* Set the width of the sidebar to 120px */
+  .w3-sidebar {
+    position: relative;
+    width: 120px;
+    background: #684;
+    overflow-y: hidden;
+  }
+
+  /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+  #main {
+    margin-left: 120px
+  }
+
+  /* Remove margins from "page content" on small screens */
+  #rectangle {
+    background: rgb(255, 255, 255);
+  }
+
+  @media only screen and (max-width: 600px) {
+    #main {
+      margin-left: 0
+    }
+  }
+
+  /* Drill Editor */
+  .container {
+    width: 900px;
+    height: 400px;
+    position: relative;
+    background: rgb(255, 255, 255);
+  }
+
+  .animate {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    position: absolute;
+    background-color: rgb(107, 0, 0);
+    border: 3px solid #f36d00;
+  }
+
+  .inst {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 1em 1em 1em 1em;
+    position: relative;
+    background: rgb(255, 238, 238);
+    right: 13px;
+    bottom: 13px;
+  }
+
+  .inst-text {
+    font-family: Helvetica, sans-serif;
+    text-align: center;
+
+  }
+</style>
+
+<script src="drilltime.js"></script>
+<script src="sandbox.js"></script>
+
+<body onload="load()" class="w3-light-green">
+  <!-- <nav class="rightbar w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-light-green">
+      <em class="fa fa-mouse-pointer w3-xxlarge"></em>
+      <p>Select</p>
+    </a>
+  </nav> -->
+
+  <!-- Icon Bar (Sidebar - hidden on small screens) -->
+  <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+    <div class="navbar">
+      <button onclick="create()" id=button1>
+        <a class="w3-bar-item w3-button w3-padding-large w3-light-green">
+          <em class="fa fa-plus w3-xxlarge"></em>
+          <p>Create</p>
+        </a>
+      </button>
+      <button onclick="nextSet()" id=button1>
+        <a class="w3-bar-item w3-button w3-padding-large w3-light-green">
+          <em class="fa fa-chevron-right w3-xxlarge"></em>
+          <p>Next Set</p>
+        </a>
+      </button>
+      <button onclick="prevSet()" id=button1>
+        <a class="w3-bar-item w3-button w3-padding-large w3-light-green">
+          <em class="fa fa-chevron-left w3-xxlarge"></em>
+          <p>Prev Set</p>
+        </a>
+      </button>
+      <button onclick="gotoSet()" id=button1>
+        <a class="w3-bar-item w3-button w3-padding-large w3-light-green">
+          <em class="fa fa-hashtag w3-xxlarge"></em>
+          <p>Goto Set</p>
+        </a>
+      </button>
+      <button onclick="play(this)" id=button1>
+        <a class="w3-bar-item w3-button w3-padding-large w3-light-green">
+          <em class="fa fa-play w3-xxlarge"></em>
+          <p>Play</p>
+        </a>
+      </button>
+      <button onclick="stop()" id=button1>
+        <a class="w3-bar-item w3-button w3-padding-large w3-light-green">
+          <em class="fa fa-stop w3-xxlarge"></em>
+          <p>Stop</p>
+        </a>
+      </button>
+      <button onclick="save()" id=button1>
+        <a class="w3-bar-item w3-button w3-padding-large w3-light-green">
+          <em class="fa fa-download w3-xxlarge"></em>
+          <p>Save</p>
+        </a>
+      </button>
+      <button onclick="load()" id=button1>
+        <a class="w3-bar-item w3-button w3-padding-large w3-light-green">
+          <em class="fa fa-upload w3-xxlarge"></em>
+          <p>Load</p>
+        </a>
+      </button>
+      <button onclick="clear()" id=button1>
+        <a class="w3-bar-item w3-button w3-padding-large w3-light-green">
+          <em class="fa fa-times-circle w3-xxlarge"></em>
+          <p>Clear</p>
+        </a>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Navbar on small screens (Hidden on medium and large screens) -->
+  <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+    <div class="w3-bar w3-grey w3-opacity w3-hover-opacity-off w3-center w3-small">
+      <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
+      <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
+      <a href="#photos" class="w3-bar-item w3-button" style="width:25% !important">PHOTOS</a>
+      <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
+      <p><button onclick="myMove(this); myMove2()" id=button1>Click Me</button></p>
+      <p><button onclick="myMove2()">Then Click Me</button></p>
+    </div>
+
+    <!-- Bottom navbar -->
+
+  </div>
+
+
+
+  <!-- Page Content -->
+  <div class="w3-padding-large" id="main">
+
+
+    <!-- Header/Home -->
+    <!-- <header class="w3-container w3-padding-32 w3-center w3-light-green" id="home">
+
+      <h1 class="w3-jumbo w3-white">
+
+        <span class="w3-hide-small">DrillTime</span>
+
+      </h1>
+
+    </header> -->
+
+    <!-- Drill Editor Section -->
+    <div class="w3-text-grey " id="about">
+      <h2 class="w3-text-light-grey">Drill Editor</h2>
+      <hr style="width:200px" class="w3-opacity">
+      <p>Tip: Use the "create" button to load the performers in your marching drill!
+      </p>
+
+
+      <!-- Drill Editor Panel-->
+      <div class="w3-row w3-center w3-padding-16 w3-section w3-light-grey">
+        <div class="w3-threequarter w3-section">
+          <span class="w3-xlarge">Field Editor</span><br>
+          <div class="container">
+            <div id="p0" class="animate">
+              <div class="inst">
+                <div class="inst-text">
+                  T1
+                </div>
+              </div>
+            </div>
+            <div id="p1" class="animate">
+              <div class="inst">
+                <div class="inst-text">
+                  T2
+                </div>
+              </div>
+            </div>
+            <img src="ball.svg"
+            style="cursor: pointer; position: absolute; z-index: 1000; left: 208px; top: 152px;" width="40"
+            height="40" id="ball">
+          </div>
+        </div>
+        <div class="w3-quarter w3-section">
+          <span class="w3-xlarge">Performer Editor</span><br>
+          <form action="" method="get">
+            <label for="fname">Instrument:</label>
+            <input type="text" id="fname" name="fname"><br><br>
+            <input type="submit" value="Submit">
+            <button id="delete" type="button">Delete</button>
+
+            <!-- Data Structure Testing -->
+            <br><br><br>
+            <div>Select instrument</div>
+            <button onclick="addClarinet()">Clarinet</button>
+            <button onclick="addTrombone()">Trombone</button>
+            <p></p>
+            <div>Drill Editor</div>
+            <button onclick="createP()">Add</button>
+            <button onclick="deleteP()">Delete</button>
+            <button onclick="clearP()">Clear</button>
+            <p></p>
+            <div>Set most recent performers instrument</div>
+            <input type="text" id="myText" placeholder="input instrument...">
+            <button onclick="setInstrument()">Submit</button>
+            <p id="demo"></p>
+            <!-- End Data Structure Testing-->
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- End Drill Editor Panel -->
+
+
+
+    <!-- Stats Section -->
+    <!-- <h3 class="w3-padding-16 w3-text-light-grey">Stats</h3>
+    <div class="w3-row w3-center w3-padding-16 w3-section w3-light-grey">
+      <div class="w3-quarter w3-section">
+        <span class="w3-xlarge">20</span><br>
+        Performers
+      </div>
+      <div class="w3-quarter w3-section">
+        <span class="w3-xlarge">15</span><br>
+        Scenes
+      </div>
+      <div class="w3-quarter w3-section">
+        <span class="w3-xlarge">12</span><br>
+        Sections
+      </div>
+      <div class="w3-quarter w3-section">
+        <span class="w3-xlarge">45</span><br>
+        Notes
+      </div>
+    </div> -->
+    <!-- End Stats Section -->
+
+    <!-- End Drill Editor Section -->
+  </div>
+
+  <!-- Our Aspirations Section -->
+  <!-- <div class="w3-padding-64 w3-content" id="photos">
+    <h2 class="w3-text-light-grey">Our Aspirations</h2>
+    <hr style="width:200px" class="w3-opacity"> -->
+
+  <!-- Grid  -->
+  <!-- <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-col">
+        <ul class="w3-ul w3-row w3-center w3-padding-16 w3-section w3-light-grey">
+          <li>Facilitate and augment the process of creating marching drills</li>
+          <li>Digitize the process for ease of access</li>
+        </ul>
+      </div> -->
+  <!-- End  grid -->
+  <!-- </div> -->
+  <!-- End Aspirations Section -->
+  <!-- </div> -->
+
+  <!-- Contact Section -->
+  <!-- <div class="w3-padding-64 w3-content w3-text-white" id="contact">
+    <h2 class="w3-text-light-grey">Contact</h2>
+    <hr style="width:200px" class="w3-opacity">
+
+    <div class="w3-section">
+      <p><em class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></em> Virginia Tech</p>
+      <p><em class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </em> Email: drilltimeapp@gmail.com
+      </p>
+    </div><br> -->
+  <!-- End Contact Section -->
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
+    <!-- End footer -->
+  </footer>
+
+  <!-- END PAGE CONTENT -->
+  </div>
+
+</body>
+
+</html>
+
+</body>
+
+</html>
